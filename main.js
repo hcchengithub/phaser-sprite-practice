@@ -1,6 +1,8 @@
 var game = new Phaser.Game(743, 396, Phaser.AUTO, 'game_div', { preload: preload, create: create, update: update});
 
 function preload() {
+    game.load.audio('bgm', 'bgm.ogg');
+    game.load.audio('swing', 'swing.ogg');
     game.load.spritesheet('felock', 'Geffen_Mage_02_noBG.png', 80, 130, 50);
     game.load.spritesheet('felock2', 'Geffen_Mage_14_noBG.png', 90, 140, 50);
     game.load.spritesheet('felock3', 'Felock_noBG.png', 60, 70, 50);
@@ -16,10 +18,17 @@ var attackButton;
 var facing = 'right';
 var attacking = false;
 var attackTimer = 0;
+var bgm;
+var swing;
 
 function create() {
     background = game.add.tileSprite(0, 0, 743, 396, 'background');
     background.fixedToCamera = true;
+
+    bgm = game.add.audio('bgm', 1, true);
+    bgm.play('', 0, 1, true);
+
+    swing = game.add.audio('swing');
 
     game.stage.backgroundColor = '#001122';
     game.physics.startSystem(Phaser.Physics.ARCADE);
@@ -74,7 +83,8 @@ function update() {
     } else if (attackButton.isDown && game.time.now > attackTimer) {
         attacking = true;
         felock.animations.play('attack');
-        attackTimer = game.time.now + 300;
+        swing.play('', 0, 0.3, false, false);
+        attackTimer = game.time.now + 400;
     } else if(!attacking) {
         felock.animations.play('idle');
     }
