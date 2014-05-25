@@ -32,25 +32,25 @@ function create() {
 
     game.stage.backgroundColor = '#001122';
     game.physics.startSystem(Phaser.Physics.ARCADE);
-    felock = game.add.sprite(200, 250, 'felock');
-    game.physics.enable(felock, Phaser.Physics.ARCADE);
-    felock.anchor.setTo(0.5,0.5);
-    felock.scale.x *= -1;
-
-    felock.animations.add('idle', [0, 1, 2, 3, 4], 10, true, true);
-    felock.animations.add('walk', [10, 11, 12, 13, 14, 15, 16, 17], 10, true, true);
-    felock.animations.add('attack', [30, 31, 32, 33, 34, 35, 36], 10, true, true);
-
-    felock.inputEnabled = true;
-    felock.input.enableDrag();
 
     felock2 = game.add.sprite(450, 150, 'felock2');
     felock2.animations.add('idle', [0, 1, 2, 3, 4, 5], 8, true, true);
     felock2.animations.play('idle');
+    felock2.z = 2;
 
     felock3 = game.add.sprite(300, 250, 'felock3');
     felock3.animations.add('idle', [0, 1, 2, 3], 8, true, true);
     felock3.animations.play('idle');
+
+    felock = game.add.sprite(200, 250, 'felock');
+    game.physics.enable(felock, Phaser.Physics.ARCADE);
+    felock.anchor.setTo(0.5,0.5);
+    felock.scale.x *= -1;
+    felock.animations.add('idle', [0, 1, 2, 3, 4], 10, true, true);
+    felock.animations.add('walk', [10, 11, 12, 13, 14, 15, 16, 17], 10, true, true);
+    felock.animations.add('attack', [30, 31, 32, 33, 34, 35, 36], 10, true, true);
+    felock.inputEnabled = true;
+    felock.input.enableDrag();
 
     cursors = game.input.keyboard.createCursorKeys();
     attackButton = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
