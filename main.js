@@ -26,7 +26,7 @@ function create() {
     background.fixedToCamera = true;
 
     bgm = game.add.audio('bgm', 1, true);
-    bgm.play('', 0, 1, true);
+    bgm.play('', 0, 0.6, true);
 
     swing = game.add.audio('swing');
 
@@ -83,7 +83,7 @@ function update() {
     } else if (attackButton.isDown && game.time.now > attackTimer) {
         attacking = true;
         felock.animations.play('attack');
-        swing.play('', 0, 0.3, false, false);
+        swing.play('', 0, 0.8, false, false);
         attackTimer = game.time.now + 400;
     } else if(!attacking) {
         felock.animations.play('idle');
